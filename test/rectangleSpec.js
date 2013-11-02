@@ -206,4 +206,63 @@ describe("Rectangle test suite:", function() {
 		});
 
 	});
+
+	describe("contains", function() {
+		it("center", function() { // The obvious test :P
+			expect(a.contains(a.center())).toBeTruthy();
+			expect(b.contains(b.center())).toBeTruthy();
+			expect(c.contains(c.center())).toBeTruthy();
+			expect(d.contains(d.center())).toBeTruthy();
+			expect(e.contains(e.center())).toBeTruthy();
+			expect(f.contains(f.center())).toBeTruthy();
+		});
+
+		it("rectangle", function() {
+			expect(a.contains(b)).toBeFalsy();
+			expect(b.contains(new Rectangle(2, 3, 1, 1))).toBeTruthy(); // inside
+			expect(b.contains(new Rectangle(1, 2, 1, 1))).toBeTruthy(); // touches edge
+			expect(b.contains(new Rectangle(100, 100, 1, 1))).toBeFalsy(); // completely outside
+			expect(b.contains(new Rectangle(2, 3, 100, 100))).toBeFalsy(); // part inside part outside
+			// Should work with negative numbers too
+			expect(f.contains(new Rectangle(2, 3, 1, 1))).toBeTruthy(); // inside
+			expect(f.contains(new Rectangle(1, 2, 1, 1))).toBeTruthy(); // touches edge
+			expect(f.contains(new Rectangle(100, 100, 1, 1))).toBeFalsy(); // completely outside
+			expect(f.contains(new Rectangle(2, 3, 100, 100))).toBeFalsy(); // part inside part outside
+		});
+	});
+
+	describe("aspectRatio", function(){
+		it("get", function() {
+			expect(a.aspectRatio()).toBeNaN();
+			expect(b.aspectRatio()).toBe(3/4);
+			expect(c.aspectRatio()).toBe(1);
+			expect(d.aspectRatio()).toBe(3/4);
+			expect(e.aspectRatio()).toBe(3/4);
+			expect(f.aspectRatio()).toBe(3/4);
+		});
+		it("set", function() {
+			a.aspectRatio(16/9);
+			expect(a.w).toBeNaN();
+			expect(a.h).toBeNaN();
+			expect(b.aspectRatio(4/3)).toBeRectangle(1, 2, 4, 3);
+			expect(b.aspectRatio(16/9)).toBeRectangle(1, 2, 4*(4/3)*Math.sqrt(0.75), 3*Math.sqrt(0.75));
+			expect(f.aspectRatio(4/3)).toBeRectangle(4, 6, -4, -3);
+			expect(f.aspectRatio(16/9)).toBeRectangle(4, 6, -4*(4/3)*Math.sqrt(0.75), -3*Math.sqrt(0.75));
+		});
+	});
+
+	it("area", function() {
+		expect(a.area()).toBe(0);
+		expect(b.area()).toBe(12);
+		expect(c.area()).toBe(4);
+		expect(f.area()).toBe(12);
+	});
+
+	it("diagonal", function() {
+		expect(a.diagonal()).toBe(0);
+		expect(b.diagonal()).toBe(5);
+		expect(c.diagonal()).toBe(Math.sqrt(8));
+		expect(f.diagonal()).toBe(5);
+	});
+
 });

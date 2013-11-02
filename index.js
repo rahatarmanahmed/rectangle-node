@@ -1,10 +1,12 @@
 // # Rectangle
 // An object representing a rectangle.
 // This object has four properties: x, y, w, h.
-// x and y represent the top left corner of this rectangle.
+// x and y represent a corner of this rectangle.
 // w and h represent this rectangle's width and height respectively.
 // The positive y axis is assumed to point down.
 // Allows negative widths and heights, but its highly unrecommended to use them.
+// x and y coordinate usually represents the top-left corner, but that can
+// change if you use negative widths and heights.
 
 // Written by [Rahat Ahmed](http://rahatah.me/d).
 
@@ -12,19 +14,14 @@ var Vector2 = require('vector2-node');
 
 // TODO
 // ----
-//contains rect/vec2
-
-//aspectRatio get/set(same area)
-
-//area get/set(same ratio)
 
 //overlaps rect, x,y,w,h
-
-//diagonal get/set?
 
 // topLeft topRight bottomLeft bottomRight?
 
 // equivalent (negative size dont matter yo)
+
+// scale and center?
 
 // ## Rectangle
 // ### Rectangle(Rectangle)
@@ -222,6 +219,7 @@ Rectangle.prototype.translate = function(x, y) {
 // ## scale(Vector2)
 // ## scale(x, y)
 // Scales this Rectangle's size by the given scales.
+// This Rectangle will be anchored to its x,y coordinate.
 // Returns this Rectangle for chaining.
 Rectangle.prototype.scale = function(x, y) {
 	if(x instanceof Vector2)
@@ -292,4 +290,52 @@ Rectangle.prototype.center = function(x, y) {
 		return this.position(x - this.w / 2, this.y = y - this.h / 2);
 	return new Vector2(this.x + this.w / 2, this.y + this.h / 2);
 };
+
+// ## contains(Rectangle)
+// Returns true if the given Rectangle fits entirely within this Rectangle.
+// ## contains(Vector2)
+// ## contains(x, y)
+// Returns true if the given point is inside or on the edge of
+Rectangle.prototype.contains = function(x, y) {
+	if(x instanceof Rectangle)
+		return this.contains(x.position()) && this.contains(x.position().add(x.size()));
+	if(x instanceof Vector2)
+		return this.left() <= x.x && x.x <= this.right() &&
+				this.top() <= x.y && x.y <= this.bottom();
+	return this.left() <= x && x <= this.right() &&
+			this.top() <= y && y <= this.bottom();
+};
+
+// ## aspectRatio()
+// Returns the aspect ratio of this Rectangle (width/height).
+// ## aspectRatio(r)
+// Adjusts the width and height to match the given ratio r.
+// As with scale, this Rectangle will be anchored to x, y.
+// The Rectangle **MUST** have a non-zero area.
+// Changing the aspect ratio of a zero area Rectangle (a line or point),
+// is undefined, will set w and h to NaN, and will break other methods.
+// Returns this Rectangle for chaining.
+
+Rectangle.prototype.aspectRatio = function(r) {
+	if(r !== undefined)
+	{
+		var ratioRatio = this.aspectRatio() / r;
+		return this.scale(1 / ratioRatio * Math.sqrt(ratioRatio),
+							Math.sqrt(ratioRatio));
+	}
+	return Math.abs(this.w / this.h);
+};
+
+// ## area()
+// Returns the area of this Rectangle.
+Rectangle.prototype.area = function() {
+	return Math.abs(this.w * this.h);
+};
+
+// ## diagonal()
+// Returns the length of this Rectangle's diagonal.
+Rectangle.prototype.diagonal = function() {
+	return Math.sqrt(this.w * this.w + this.h * this.h);
+};
+
 module.exports = Rectangle;
