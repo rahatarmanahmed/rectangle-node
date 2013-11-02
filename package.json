@@ -1,0 +1,22 @@
+{
+  "name": "rectangle-node",
+  "version": "0.0.1",
+  "description": "An object representing a rectangle.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node node_modules/jasmine-node/lib/jasmine-node/cli.js test/"
+  },
+  "keywords": [
+    "math",
+    "rectangle",
+    "2d"
+  ],
+  "author": "Rahat Ahmed",
+  "license": "EPL",
+  "devDependencies": {
+    "jasmine-node": "~1.11.0"
+  },
+  "dependencies": {
+    "vector2-node": "git://github.com/rahatarmanahmed/vector2-node.git"
+  }
+}
