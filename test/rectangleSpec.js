@@ -182,6 +182,45 @@ describe("Rectangle test suite:", function() {
 		});
 	});
 
+	describe("equivalent", function() {
+		it("other Rectangle", function(){
+			expect(b.equivalent(a)).toBeFalsy();
+			expect(b.equivalent(d)).toBeTruthy();
+			expect(b.equivalent(f)).toBeTruthy();
+			expect(b.equivalent(new Rectangle(1.000000000001, 2.000000000001,
+											3, 4.000000000001), epsilon)).toBeTruthy();
+			expect(b.equivalent(new Rectangle(1.000000000001, 6.000000000001,
+											3, -4.000000000001), epsilon)).toBeTruthy();
+		});
+		it("two Vector2's", function() {
+			expect(b.equivalent(new Vector2(1, 2), new Vector2(3, 4))).toBeTruthy();
+			expect(b.equivalent(new Vector2(-1, 2), new Vector2(3, 4))).toBeFalsy();
+			expect(b.equivalent(new Vector2(4, 2), new Vector2(-3, 4))).toBeTruthy();
+			expect(b.equivalent(new Vector2(1.000000000001, 2.000000000001),
+							new Vector2(3.000000000001, 4.000000000001), epsilon)).toBeTruthy();
+			expect(b.equivalent(new Vector2(1.000000000001, 6.000000000001),
+							new Vector2(3.000000000001, -4.000000000001), epsilon)).toBeTruthy();
+		});
+		it("one Vector2, two scalars", function() {
+			expect(b.equivalent(new Vector2(1, 2), 3, 4)).toBeTruthy();
+			expect(b.equivalent(new Vector2(-1, 2), 3, 4)).toBeFalsy();
+			expect(b.equivalent(new Vector2(4, 2), -3, 4)).toBeTruthy();
+			expect(b.equivalent(new Vector2(1.000000000001, 2.000000000001),
+							3.000000000001, 4.000000000001, epsilon)).toBeTruthy();
+			expect(b.equivalent(new Vector2(1.000000000001, 6.000000000001),
+							3.000000000001, -4.000000000001, epsilon)).toBeTruthy();
+		});
+		it("four scalars", function() {
+			expect(b.equivalent(1, 2, 3, 4)).toBeTruthy();
+			expect(b.equivalent(-1, 2, 3, 4)).toBeFalsy();
+			expect(b.equivalent(4, 2, -3, 4)).toBeTruthy();
+			expect(b.equivalent(1.000000000001, 2.000000000001,
+							3.000000000001, 4.000000000001, epsilon)).toBeTruthy();
+			expect(b.equivalent(1.000000000001, 6.000000000001,
+							3.000000000001, -4.000000000001, epsilon)).toBeTruthy();
+		});
+	});
+
 	it("perimeter", function() {
 		expect(a.perimeter()).toBe(0);
 		expect(b.perimeter()).toBe(14);

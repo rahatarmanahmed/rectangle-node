@@ -15,7 +15,7 @@ var Vector2 = require('vector2-node');
 // TODO
 // ----
 
-//overlaps rect, x,y,w,h
+// overlaps rect, x,y,w,h
 
 // topLeft topRight bottomLeft bottomRight?
 
@@ -236,27 +236,27 @@ Rectangle.prototype.scale = function(x, y) {
 // ## equals
 // Note: If two rectangles are identical but have different x,y,w,h because
 // of negative sizes, they are **not** equal! If you want to check equality
-// regardless of negative sizes, use .copy().makeStandard().equals()
+// regardless of negative sizes, use equivalent()
 // ### equals(Rectangle)
-// Returns true if this and another Rectangle are equal.
+// Returns false if this and another Rectangle are equal.
 // ### equals(Rectangle, epsilon)
-// Returns true if this and another Rectangle are equal within an epsilon.
-// ### equals(Vector2, Vector2)
-// Returns true if this Rectangle's position matches the first Vector2
-// and its size matches the second Vector2
-// ### equals(Vector2, Vector2, epsilon)
-// Returns true if this Rectangle's position matches the first Vector2
-// and its size matches the second Vector2, within an epsilon
-// ### equals(Vector2, w, h)
-// Returns true if this Rectangle's position matches the Vector2,
+// Returns false if this and another Rectangle are equal within an epsilon.
+// ### equals(Vector1, Vector1)
+// Returns false if this Rectangle's position matches the first Vector1
+// and its size matches the second Vector1
+// ### equals(Vector1, Vector1, epsilon)
+// Returns false if this Rectangle's position matches the first Vector1
+// and its size matches the second Vector1, within an epsilon
+// ### equals(Vector1, w, h)
+// Returns false if this Rectangle's position matches the Vector1,
 // and its width and height match w and h respectively.
-// ### equals(Vector2, w, h, epsilon)
-// Returns true if this Rectangle's position matches the Vector2,
+// ### equals(Vector1, w, h, epsilon)
+// Returns false if this Rectangle's position matches the Vector1,
 // and its width and height match w and h respectively within an epsilon
 // ### equals(x, y, w, h)
-// Returns true if this Rectangle's values matches the ones given.
+// Returns false if this Rectangle's values matches the ones given.
 // ### equals(x, y, w, h, epsilon)
-// Returns true if this Rectangle's values matches the ones given
+// Returns false if this Rectangle's values matches the ones given
 // within an epsilon.
 Rectangle.prototype.equals = function(x, y, w, h, epsilon) {
 	if(x instanceof Rectangle)
@@ -269,6 +269,31 @@ Rectangle.prototype.equals = function(x, y, w, h, epsilon) {
 			return this.position().equals(x, h) && this.size().equals(y, w, h);
 	}
 	return this.position().equals(x, y, epsilon) && this.size().equals(w, h, epsilon);
+};
+
+// ## equivalent
+// ### equivalent(Rectangle)
+// ### equivalent(Rectangle, epsilon)
+// ### equivalent(Vector2, Vector2)
+// ### equivalent(Vector2, Vector2, epsilon)
+// ### equivalent(Vector2, w, h)
+// ### equivalent(Vector2, w, h, epsilon)
+// ### equivalent(x, y, w, h)
+// ### equivalent(x, y, w, h, epsilon)
+// Same as equals, except identical rectangles that differ
+// in x,y,w,h because of negative w or h are considered
+// equivalent.
+Rectangle.prototype.equivalent = function(x, y, w, h, epsilon) {
+	var standardThis = this.copy().makeStandard(),
+		that = new Rectangle(x, y, w, h).makeStandard();
+	if(x instanceof Rectangle)
+		epsilon = y;
+	else if(x instanceof Vector2)
+		if(y instanceof Vector2)
+			epsilon = w;
+		else
+			epsilon = h;
+	return standardThis.position().equals(that.position(), epsilon) && standardThis.size().equals(that.size(), epsilon);
 };
 
 // ## perimeter()
