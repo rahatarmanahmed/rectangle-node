@@ -12,11 +12,6 @@
 
 var Vector2 = require('vector2-node');
 
-// TODO
-// ----
-
-// overlaps rect, x,y,w,h
-
 // ## Rectangle
 // ### Rectangle(Rectangle)
 // ### Rectangle(Vector2, Vector2)
