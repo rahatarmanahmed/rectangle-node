@@ -304,4 +304,34 @@ describe("Rectangle test suite:", function() {
 		expect(f.diagonal()).toBe(5);
 	});
 
+	describe("overlaps", function() {
+		it("other rectangle", function() {
+			expect(b.overlaps(new Rectangle(2, 3, 1, 1))).toBeTruthy();
+			expect(b.overlaps(new Rectangle(2, 2, 1, 1))).toBeTruthy();
+			expect(b.overlaps(new Rectangle(0, 0, 2, 3))).toBeTruthy();
+			expect(b.overlaps(new Rectangle(3, 5, 2, 3))).toBeTruthy();
+			expect(b.overlaps(new Rectangle(-3, -5, 1, 1))).toBeFalsy();
+		});
+		it("2 vector2's", function() {
+			expect(b.overlaps(new Vector2(2, 3), new Vector2(1, 1))).toBeTruthy();
+			expect(b.overlaps(new Vector2(2, 2), new Vector2(1, 1))).toBeTruthy();
+			expect(b.overlaps(new Vector2(0, 0), new Vector2(2, 3))).toBeTruthy();
+			expect(b.overlaps(new Vector2(3, 5), new Vector2(2, 3))).toBeTruthy();
+			expect(b.overlaps(new Vector2(-3, -5), new Vector2(1, 1))).toBeFalsy();
+		});
+		it("1 vector2 2 scalars", function() {
+			expect(b.overlaps(new Vector2(2, 3), 1, 1)).toBeTruthy();
+			expect(b.overlaps(new Vector2(2, 2), 1, 1)).toBeTruthy();
+			expect(b.overlaps(new Vector2(0, 0), 2, 3)).toBeTruthy();
+			expect(b.overlaps(new Vector2(3, 5), 2, 3)).toBeTruthy();
+			expect(b.overlaps(new Vector2(-3, -5), 1, 1)).toBeFalsy();
+		});
+		it("2 scalars", function() {
+			expect(b.overlaps(2, 3, 1, 1)).toBeTruthy();
+			expect(b.overlaps(2, 2, 1, 1)).toBeTruthy();
+			expect(b.overlaps(0, 0, 2, 3)).toBeTruthy();
+			expect(b.overlaps(3, 5, 2, 3)).toBeTruthy();
+			expect(b.overlaps(-3, -5, 1, 1)).toBeFalsy();
+		});
+	});
 });

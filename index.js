@@ -17,12 +17,6 @@ var Vector2 = require('vector2-node');
 
 // overlaps rect, x,y,w,h
 
-// topLeft topRight bottomLeft bottomRight?
-
-// equivalent (negative size dont matter yo)
-
-// scale and center?
-
 // ## Rectangle
 // ### Rectangle(Rectangle)
 // ### Rectangle(Vector2, Vector2)
@@ -361,6 +355,26 @@ Rectangle.prototype.area = function() {
 // Returns the length of this Rectangle's diagonal.
 Rectangle.prototype.diagonal = function() {
 	return Math.sqrt(this.w * this.w + this.h * this.h);
+};
+
+// ## overlaps(Rectangle)
+// ## overlaps(Vector2, Vector2)
+// ## overlaps(Vector2, w, h)
+// ## overlaps(x, y, w, h)
+Rectangle.prototype.overlaps = function(x, y, w ,h) {
+	if(x instanceof Rectangle)
+		return this.x < x.x + x.w && this.x + this.w > x.x && 
+				this.y < x.y + x.h && this.y + this.h > x.y;
+	else if(x instanceof Vector2)
+		if(y instanceof Vector2)
+			return this.x < x.x + y.x && this.x + this.w > x.x && 
+				this.y < x.y + y.y && this.y + this.h > x.y;
+		else
+			return this.x < x.x + y && this.x + this.w > x.x && 
+				this.y < x.y + w && this.y + this.h > x.y;
+	else
+		return this.x < x + w && this.x + this.w > x && 
+				this.y < y + h && this.y + this.h > y;
 };
 
 module.exports = Rectangle;
