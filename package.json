@@ -22,6 +22,6 @@
     "jasmine-node": "~1.11.0"
   },
   "dependencies": {
-    "vector2-node": "git://github.com/rahatarmanahmed/vector2-node.git"
+    "vector2-node": "0.x"
   }
 }
