@@ -1,15 +1,728 @@
-<!DOCTYPE HTML>
-<html lang="en-US">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="refresh" content="1;url=docs/index.html">
-        <script type="text/javascript">
-            window.location.href = "docs/index.html"
-        </script>
-        <title>Page Redirection</title>
-    </head>
-    <body>
-        <!-- Note: don't tell people to `click` the link, just tell them that it is a link. -->
-        If you are not redirected automatically, follow the <a href='docs/index.html'>link to example</a>
-    </body>
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Rectangle</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h1 id="rectangle">Rectangle</h1>
+<p>An object representing a rectangle.
+This object has four properties: x, y, w, h.
+x and y represent a corner of this rectangle.
+w and h represent this rectangle’s width and height respectively.
+The positive y axis is assumed to point down.
+Allows negative widths and heights, but its highly unrecommended to use them.
+x and y coordinate usually represents the top-left corner, but that can
+change if you use negative widths and heights.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Written by <a href="http://rahatah.me/d">Rahat Ahmed</a>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+<span class="hljs-keyword">var</span> Vector2 = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vector2-node'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <h2 id="rectangle">Rectangle</h2>
+<h3 id="rectangle-rectangle-">Rectangle(Rectangle)</h3>
+<h3 id="rectangle-vector2-vector2-">Rectangle(Vector2, Vector2)</h3>
+<h3 id="rectangle-vector2-w-h-">Rectangle(Vector2, w, h)</h3>
+<h3 id="rectangle-x-y-w-h-">Rectangle(x, y, w, h)</h3>
+<p>Constructor for Rectangle</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Rectangle</span>(<span class="hljs-params">x, y, w, h</span>)
+</span>{
+	<span class="hljs-keyword">this</span>.set(x, y, w ,h);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <h2 id="set">set</h2>
+<h3 id="set-rectangle-">set(Rectangle)</h3>
+<h3 id="set-vector2-vector2-">set(Vector2, Vector2)</h3>
+<h3 id="set-vector2-w-h-">set(Vector2, w, h)</h3>
+<h3 id="set-x-y-w-h-">set(x, y, w, h)</h3>
+<p>Sets this rectangle to the given values.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+Rectangle.prototype.set = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x, y, w, h</span>)
+</span>{
+	<span class="hljs-keyword">if</span>(x <span class="hljs-keyword">instanceof</span> Rectangle)
+	{
+		<span class="hljs-keyword">this</span>.x = x.x;
+		<span class="hljs-keyword">this</span>.y = x.y;
+		<span class="hljs-keyword">this</span>.w = x.w;
+		<span class="hljs-keyword">this</span>.h = x.h;
+	}
+	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(x <span class="hljs-keyword">instanceof</span> Vector2)
+	{
+		<span class="hljs-keyword">this</span>.x = x.x;
+		<span class="hljs-keyword">this</span>.y = x.y;
+		<span class="hljs-keyword">if</span>(y <span class="hljs-keyword">instanceof</span> Vector2)
+		{
+			<span class="hljs-keyword">this</span>.w = y.x;
+			<span class="hljs-keyword">this</span>.h = y.y;
+		}
+		<span class="hljs-keyword">else</span>
+		{
+			<span class="hljs-keyword">this</span>.w = y;
+			<span class="hljs-keyword">this</span>.h = w;
+		}
+	}
+	<span class="hljs-keyword">else</span>
+	{
+		<span class="hljs-keyword">this</span>.x = x || <span class="hljs-number">0</span>;
+		<span class="hljs-keyword">this</span>.y = y || <span class="hljs-number">0</span>;
+		<span class="hljs-keyword">this</span>.w = w || <span class="hljs-number">0</span>;
+		<span class="hljs-keyword">this</span>.h = h || <span class="hljs-number">0</span>;
+	}
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <h2 id="position">position</h2>
+<h3 id="position-rectangle-">position(Rectangle)</h3>
+<p>Sets this rectangle’s x and y to the same x and y of the
+given Rectangle.
+Returns <strong>this Rectangle</strong> for chaining.</p>
+<h3 id="position-vector2-">position(Vector2)</h3>
+<p>Sets this rectangle’s x and y to that of the given Vector2.
+Returns <strong>this Rectangle</strong> for chaining.</p>
+<h3 id="position-x-y-">position(x, y)</h3>
+<p>Sets this rectangle’s x and y to that of the given x and y values.
+Returns <strong>this Rectangle</strong> for chaining.</p>
+<h3 id="position-">position()</h3>
+<p>Returns the <strong>position</strong> Vector2 containing this Rectangle’s
+x and y values.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Rectangle.prototype.position = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x, y</span>) </span>{
+	<span class="hljs-keyword">if</span>(x <span class="hljs-keyword">instanceof</span> Rectangle || x <span class="hljs-keyword">instanceof</span> Vector2)
+	{
+		<span class="hljs-keyword">this</span>.x = x.x;
+		<span class="hljs-keyword">this</span>.y = x.y;
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+	}
+	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(x !== <span class="hljs-literal">undefined</span>)
+	{
+		<span class="hljs-keyword">this</span>.x = x;
+		<span class="hljs-keyword">this</span>.y = y;
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+	}
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vector2(<span class="hljs-keyword">this</span>.x, <span class="hljs-keyword">this</span>.y);
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <h2 id="size">size</h2>
+<h3 id="size-rectangle-">size(Rectangle)</h3>
+<p>Sets this rectangle’s w and h to the same w and h of the
+given Rectangle.
+Returns <strong>this Rectangle</strong> for chaining.</p>
+<h3 id="size-vector2-">size(Vector2)</h3>
+<p>Sets this rectangle’s w and h to that of the given Vector2.
+Returns <strong>this Rectangle</strong> for chaining.</p>
+<h3 id="size-w-h-">size(w, h)</h3>
+<p>Sets this rectangle’s w and h to that of the given w and h values.
+Returns <strong>this Rectangle</strong> for chaining.</p>
+<h3 id="size-">size()</h3>
+<p>Returns the <strong>size</strong> Vector2 containing this Rectangle’s
+w and h values.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Rectangle.prototype.size = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">w, h</span>) </span>{
+	<span class="hljs-keyword">if</span>(w <span class="hljs-keyword">instanceof</span> Rectangle)
+	{
+		<span class="hljs-keyword">this</span>.w = w.w;
+		<span class="hljs-keyword">this</span>.h = w.h;
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+	}
+	<span class="hljs-keyword">if</span>(w <span class="hljs-keyword">instanceof</span> Vector2)
+	{
+		<span class="hljs-keyword">this</span>.w = w.x;
+		<span class="hljs-keyword">this</span>.h = w.y;
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+	}
+	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(w !== <span class="hljs-literal">undefined</span>)
+	{
+		<span class="hljs-keyword">this</span>.w = w;
+		<span class="hljs-keyword">this</span>.h = h;
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+	}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>TODO: account for negative size</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vector2(<span class="hljs-keyword">this</span>.w, <span class="hljs-keyword">this</span>.h);
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <h2 id="top-">top()</h2>
+<p>Returns the top bound of this Rectangle.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Rectangle.prototype.top = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+	<span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span>.h &gt;= <span class="hljs-number">0</span>) ? <span class="hljs-keyword">this</span>.y : <span class="hljs-keyword">this</span>.y + <span class="hljs-keyword">this</span>.h;
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <h2 id="bottom-">bottom()</h2>
+<p>Returns the bottom bound of this Rectangle.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Rectangle.prototype.bottom = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+	<span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span>.h &gt;= <span class="hljs-number">0</span>) ? <span class="hljs-keyword">this</span>.y + <span class="hljs-keyword">this</span>.h : <span class="hljs-keyword">this</span>.y;
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <h2 id="left-">left()</h2>
+<p>Returns the left bound of this Rectangle.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Rectangle.prototype.left = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+	<span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span>.w &gt;= <span class="hljs-number">0</span>) ? <span class="hljs-keyword">this</span>.x : <span class="hljs-keyword">this</span>.x + <span class="hljs-keyword">this</span>.w;
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <h2 id="right-">right()</h2>
+<p>Returns the right bound of this Rectangle.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Rectangle.prototype.right = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+	<span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span>.h &gt;= <span class="hljs-number">0</span>) ? <span class="hljs-keyword">this</span>.x + <span class="hljs-keyword">this</span>.w : <span class="hljs-keyword">this</span>.x;
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <h2 id="copy-">copy()</h2>
+<h2 id="clone-">clone()</h2>
+<p>Returns a new identical Rectangle</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Rectangle.prototype.copy = Rectangle.prototype.clone = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Rectangle(<span class="hljs-keyword">this</span>.x, <span class="hljs-keyword">this</span>.y, <span class="hljs-keyword">this</span>.w, <span class="hljs-keyword">this</span>.h);
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <h2 id="isstandard-">isStandard()</h2>
+<p>A standard Rectangle has a non-negative width and height.
+Returns true if both the width and height of this Rectangle are non-negative</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Rectangle.prototype.isStandard = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.w &gt;= <span class="hljs-number">0</span> &amp;&amp; <span class="hljs-keyword">this</span>.h &gt;= <span class="hljs-number">0</span>;
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <h2 id="makestandard-">makeStandard()</h2>
+<p>If this Rectangle is non-standard, makes width/height positive
+and adjusts x and y accordingly. Will not affect a standard
+Rectangle.
+Returns this Rectangle for chaining.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Rectangle.prototype.makeStandard = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+	<span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.w &lt; <span class="hljs-number">0</span>)
+	{
+		<span class="hljs-keyword">this</span>.x += <span class="hljs-keyword">this</span>.w;
+		<span class="hljs-keyword">this</span>.w *= <span class="hljs-number">-1</span>;
+	}
+	<span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.h &lt; <span class="hljs-number">0</span>)
+	{
+		<span class="hljs-keyword">this</span>.y += <span class="hljs-keyword">this</span>.h;
+		<span class="hljs-keyword">this</span>.h *= <span class="hljs-number">-1</span>;
+	}
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <h2 id="translate-vector2-">translate(Vector2)</h2>
+<h2 id="translate-x-y-">translate(x, y)</h2>
+<p>Translates this Rectangle’s position by the given coordinates,
+relative to its current position.
+Returns this Rectangle for chaining.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Rectangle.prototype.translate = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x, y</span>) </span>{
+	<span class="hljs-keyword">if</span>(x <span class="hljs-keyword">instanceof</span> Vector2)
+	{
+		<span class="hljs-keyword">this</span>.x += x.x;
+		<span class="hljs-keyword">this</span>.y += x.y;
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+	}
+	<span class="hljs-keyword">this</span>.x += x;
+	<span class="hljs-keyword">this</span>.y += y;
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <h2 id="scale-vector2-">scale(Vector2)</h2>
+<h2 id="scale-x-y-">scale(x, y)</h2>
+<p>Scales this Rectangle’s size by the given scales.
+This Rectangle will be anchored to its x,y coordinate.
+Returns this Rectangle for chaining.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Rectangle.prototype.scale = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x, y</span>) </span>{
+	<span class="hljs-keyword">if</span>(x <span class="hljs-keyword">instanceof</span> Vector2)
+	{
+		<span class="hljs-keyword">this</span>.w *= x.x;
+		<span class="hljs-keyword">this</span>.h *= x.y;
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+	}
+	<span class="hljs-keyword">this</span>.w *= x;
+	<span class="hljs-keyword">this</span>.h *= y;
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <h2 id="equals">equals</h2>
+<p>Note: If two rectangles are identical but have different x,y,w,h because
+of negative sizes, they are <strong>not</strong> equal! If you want to check equality
+regardless of negative sizes, use equivalent()</p>
+<h3 id="equals-rectangle-">equals(Rectangle)</h3>
+<p>Returns false if this and another Rectangle are equal.</p>
+<h3 id="equals-rectangle-epsilon-">equals(Rectangle, epsilon)</h3>
+<p>Returns false if this and another Rectangle are equal within an epsilon.</p>
+<h3 id="equals-vector1-vector1-">equals(Vector1, Vector1)</h3>
+<p>Returns false if this Rectangle’s position matches the first Vector1
+and its size matches the second Vector1</p>
+<h3 id="equals-vector1-vector1-epsilon-">equals(Vector1, Vector1, epsilon)</h3>
+<p>Returns false if this Rectangle’s position matches the first Vector1
+and its size matches the second Vector1, within an epsilon</p>
+<h3 id="equals-vector1-w-h-">equals(Vector1, w, h)</h3>
+<p>Returns false if this Rectangle’s position matches the Vector1,
+and its width and height match w and h respectively.</p>
+<h3 id="equals-vector1-w-h-epsilon-">equals(Vector1, w, h, epsilon)</h3>
+<p>Returns false if this Rectangle’s position matches the Vector1,
+and its width and height match w and h respectively within an epsilon</p>
+<h3 id="equals-x-y-w-h-">equals(x, y, w, h)</h3>
+<p>Returns false if this Rectangle’s values matches the ones given.</p>
+<h3 id="equals-x-y-w-h-epsilon-">equals(x, y, w, h, epsilon)</h3>
+<p>Returns false if this Rectangle’s values matches the ones given
+within an epsilon.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Rectangle.prototype.equals = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x, y, w, h, epsilon</span>) </span>{
+	<span class="hljs-keyword">if</span>(x <span class="hljs-keyword">instanceof</span> Rectangle)
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.position().equals(x.position(), y) &amp;&amp; <span class="hljs-keyword">this</span>.size().equals(x.size(), y);
+	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(x <span class="hljs-keyword">instanceof</span> Vector2)
+	{
+		<span class="hljs-keyword">if</span>(y <span class="hljs-keyword">instanceof</span> Vector2)
+			<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.position().equals(x, w) &amp;&amp; <span class="hljs-keyword">this</span>.size().equals(y, w);
+		<span class="hljs-keyword">else</span>
+			<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.position().equals(x, h) &amp;&amp; <span class="hljs-keyword">this</span>.size().equals(y, w, h);
+	}
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.position().equals(x, y, epsilon) &amp;&amp; <span class="hljs-keyword">this</span>.size().equals(w, h, epsilon);
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <h2 id="equivalent">equivalent</h2>
+<h3 id="equivalent-rectangle-">equivalent(Rectangle)</h3>
+<h3 id="equivalent-rectangle-epsilon-">equivalent(Rectangle, epsilon)</h3>
+<h3 id="equivalent-vector2-vector2-">equivalent(Vector2, Vector2)</h3>
+<h3 id="equivalent-vector2-vector2-epsilon-">equivalent(Vector2, Vector2, epsilon)</h3>
+<h3 id="equivalent-vector2-w-h-">equivalent(Vector2, w, h)</h3>
+<h3 id="equivalent-vector2-w-h-epsilon-">equivalent(Vector2, w, h, epsilon)</h3>
+<h3 id="equivalent-x-y-w-h-">equivalent(x, y, w, h)</h3>
+<h3 id="equivalent-x-y-w-h-epsilon-">equivalent(x, y, w, h, epsilon)</h3>
+<p>Same as equals, except identical rectangles that differ
+in x,y,w,h because of negative w or h are considered
+equivalent.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Rectangle.prototype.equivalent = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x, y, w, h, epsilon</span>) </span>{
+	<span class="hljs-keyword">var</span> standardThis = <span class="hljs-keyword">this</span>.copy().makeStandard(),
+		that = <span class="hljs-keyword">new</span> Rectangle(x, y, w, h).makeStandard();
+	<span class="hljs-keyword">if</span>(x <span class="hljs-keyword">instanceof</span> Rectangle)
+		epsilon = y;
+	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(x <span class="hljs-keyword">instanceof</span> Vector2)
+		<span class="hljs-keyword">if</span>(y <span class="hljs-keyword">instanceof</span> Vector2)
+			epsilon = w;
+		<span class="hljs-keyword">else</span>
+			epsilon = h;
+	<span class="hljs-keyword">return</span> standardThis.position().equals(that.position(), epsilon) &amp;&amp; standardThis.size().equals(that.size(), epsilon);
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <h2 id="perimeter-">perimeter()</h2>
+<p>Returns the perimeter of this Rectangle.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Rectangle.prototype.perimeter = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+	<span class="hljs-keyword">return</span> <span class="hljs-number">2</span> * <span class="hljs-built_in">Math</span>.abs(<span class="hljs-keyword">this</span>.w) + <span class="hljs-number">2</span> * <span class="hljs-built_in">Math</span>.abs(<span class="hljs-keyword">this</span>.h);
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <h2 id="center-">center()</h2>
+<p>Returns a Vector2 of the center of this Rectangle</p>
+<h2 id="center-vector2-">center(Vector2)</h2>
+<h2 id="center-x-y-">center(x, y)</h2>
+<p>Sets this Rectangle’s position so that the input
+is where the Rectangle’s center is.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Rectangle.prototype.center = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x, y</span>) </span>{
+	<span class="hljs-keyword">if</span>(x <span class="hljs-keyword">instanceof</span> Vector2)
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.position(x.x - <span class="hljs-keyword">this</span>.w / <span class="hljs-number">2</span>,  x.y - <span class="hljs-keyword">this</span>.h / <span class="hljs-number">2</span>);
+	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(x !== <span class="hljs-literal">undefined</span>)
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.position(x - <span class="hljs-keyword">this</span>.w / <span class="hljs-number">2</span>, <span class="hljs-keyword">this</span>.y = y - <span class="hljs-keyword">this</span>.h / <span class="hljs-number">2</span>);
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Vector2(<span class="hljs-keyword">this</span>.x + <span class="hljs-keyword">this</span>.w / <span class="hljs-number">2</span>, <span class="hljs-keyword">this</span>.y + <span class="hljs-keyword">this</span>.h / <span class="hljs-number">2</span>);
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <h2 id="contains-rectangle-">contains(Rectangle)</h2>
+<p>Returns true if the given Rectangle fits entirely within this Rectangle.</p>
+<h2 id="contains-vector2-">contains(Vector2)</h2>
+<h2 id="contains-x-y-">contains(x, y)</h2>
+<p>Returns true if the given point is inside or on the edge of</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Rectangle.prototype.contains = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x, y</span>) </span>{
+	<span class="hljs-keyword">if</span>(x <span class="hljs-keyword">instanceof</span> Rectangle)
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.contains(x.position()) &amp;&amp; <span class="hljs-keyword">this</span>.contains(x.position().add(x.size()));
+	<span class="hljs-keyword">if</span>(x <span class="hljs-keyword">instanceof</span> Vector2)
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.left() &lt;= x.x &amp;&amp; x.x &lt;= <span class="hljs-keyword">this</span>.right() &amp;&amp;
+				<span class="hljs-keyword">this</span>.top() &lt;= x.y &amp;&amp; x.y &lt;= <span class="hljs-keyword">this</span>.bottom();
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.left() &lt;= x &amp;&amp; x &lt;= <span class="hljs-keyword">this</span>.right() &amp;&amp;
+			<span class="hljs-keyword">this</span>.top() &lt;= y &amp;&amp; y &lt;= <span class="hljs-keyword">this</span>.bottom();
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <h2 id="aspectratio-">aspectRatio()</h2>
+<p>Returns the aspect ratio of this Rectangle (width/height).</p>
+<h2 id="aspectratio-r-">aspectRatio(r)</h2>
+<p>Adjusts the width and height to match the given ratio r.
+As with scale, this Rectangle will be anchored to x, y.
+The Rectangle <strong>MUST</strong> have a non-zero area.
+Changing the aspect ratio of a zero area Rectangle (a line or point),
+is undefined, will set w and h to NaN, and will break other methods.
+Returns this Rectangle for chaining.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+Rectangle.prototype.aspectRatio = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">r</span>) </span>{
+	<span class="hljs-keyword">if</span>(r !== <span class="hljs-literal">undefined</span>)
+	{
+		<span class="hljs-keyword">var</span> ratioRatio = <span class="hljs-keyword">this</span>.aspectRatio() / r;
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.scale(<span class="hljs-number">1</span> / ratioRatio * <span class="hljs-built_in">Math</span>.sqrt(ratioRatio),
+							<span class="hljs-built_in">Math</span>.sqrt(ratioRatio));
+	}
+	<span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.abs(<span class="hljs-keyword">this</span>.w / <span class="hljs-keyword">this</span>.h);
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <h2 id="area-">area()</h2>
+<p>Returns the area of this Rectangle.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Rectangle.prototype.area = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+	<span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.abs(<span class="hljs-keyword">this</span>.w * <span class="hljs-keyword">this</span>.h);
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <h2 id="diagonal-">diagonal()</h2>
+<p>Returns the length of this Rectangle’s diagonal.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Rectangle.prototype.diagonal = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+	<span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.sqrt(<span class="hljs-keyword">this</span>.w * <span class="hljs-keyword">this</span>.w + <span class="hljs-keyword">this</span>.h * <span class="hljs-keyword">this</span>.h);
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <h2 id="overlaps-rectangle-">overlaps(Rectangle)</h2>
+<h2 id="overlaps-vector2-vector2-">overlaps(Vector2, Vector2)</h2>
+<h2 id="overlaps-vector2-w-h-">overlaps(Vector2, w, h)</h2>
+<h2 id="overlaps-x-y-w-h-">overlaps(x, y, w, h)</h2>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Rectangle.prototype.overlaps = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x, y, w ,h</span>) </span>{
+	<span class="hljs-keyword">if</span>(x <span class="hljs-keyword">instanceof</span> Rectangle)
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.x &lt; x.x + x.w &amp;&amp; <span class="hljs-keyword">this</span>.x + <span class="hljs-keyword">this</span>.w &gt; x.x &amp;&amp; 
+				<span class="hljs-keyword">this</span>.y &lt; x.y + x.h &amp;&amp; <span class="hljs-keyword">this</span>.y + <span class="hljs-keyword">this</span>.h &gt; x.y;
+	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(x <span class="hljs-keyword">instanceof</span> Vector2)
+		<span class="hljs-keyword">if</span>(y <span class="hljs-keyword">instanceof</span> Vector2)
+			<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.x &lt; x.x + y.x &amp;&amp; <span class="hljs-keyword">this</span>.x + <span class="hljs-keyword">this</span>.w &gt; x.x &amp;&amp; 
+				<span class="hljs-keyword">this</span>.y &lt; x.y + y.y &amp;&amp; <span class="hljs-keyword">this</span>.y + <span class="hljs-keyword">this</span>.h &gt; x.y;
+		<span class="hljs-keyword">else</span>
+			<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.x &lt; x.x + y &amp;&amp; <span class="hljs-keyword">this</span>.x + <span class="hljs-keyword">this</span>.w &gt; x.x &amp;&amp; 
+				<span class="hljs-keyword">this</span>.y &lt; x.y + w &amp;&amp; <span class="hljs-keyword">this</span>.y + <span class="hljs-keyword">this</span>.h &gt; x.y;
+	<span class="hljs-keyword">else</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.x &lt; x + w &amp;&amp; <span class="hljs-keyword">this</span>.x + <span class="hljs-keyword">this</span>.w &gt; x &amp;&amp; 
+				<span class="hljs-keyword">this</span>.y &lt; y + h &amp;&amp; <span class="hljs-keyword">this</span>.y + <span class="hljs-keyword">this</span>.h &gt; y;
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <h2 id="intersection-rectangle-">intersection(Rectangle)</h2>
+<p>Returns a new Rectangle representing the overlapping area of the two rectangles
+Returns null if the two rectangles do not overlap.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Rectangle.prototype.intersection = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">r</span>) </span>{
+	<span class="hljs-keyword">var</span> x, y, dx, dy;
+	<span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.x &lt; r.x) x =    r.x, dx = <span class="hljs-keyword">this</span>.x + <span class="hljs-keyword">this</span>.w - r.x;
+	<span class="hljs-keyword">else</span>              x = <span class="hljs-keyword">this</span>.x, dx = r.x    + r.w    - <span class="hljs-keyword">this</span>.x;
+	<span class="hljs-keyword">if</span> (dx &lt; <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+	<span class="hljs-keyword">if</span> (dx &gt; <span class="hljs-keyword">this</span>.w) dx = <span class="hljs-keyword">this</span>.w;
+	<span class="hljs-keyword">if</span> (dx &gt; r.w)    dx = r.w;
+
+	<span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.y &lt; r.y) y =    r.y, dy = <span class="hljs-keyword">this</span>.y + <span class="hljs-keyword">this</span>.h - r.y;
+	<span class="hljs-keyword">else</span>              y = <span class="hljs-keyword">this</span>.y, dy = r.y    + r.h    - <span class="hljs-keyword">this</span>.y;
+	<span class="hljs-keyword">if</span> (dy &lt; <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+	<span class="hljs-keyword">if</span> (dy &gt; <span class="hljs-keyword">this</span>.h) dy = <span class="hljs-keyword">this</span>.h;
+	<span class="hljs-keyword">if</span> (dy &gt; r.h)    dy = r.h;
+
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Rectangle(x, y, dx, dy);
+}
+
+<span class="hljs-built_in">module</span>.exports = Rectangle;</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
 </html>
