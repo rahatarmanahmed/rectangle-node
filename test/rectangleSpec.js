@@ -334,4 +334,24 @@ describe("Rectangle test suite:", function() {
 			expect(b.overlaps(-3, -5, 1, 1)).toBeFalsy();
 		});
 	});
+	describe("intersection", function() {
+		it("returns null if the rectangles don't overlap", function() {
+			expect(b.intersection(c)).toBeNull();
+		});
+		it("computes the intersection", function() {
+			expect(b.intersection(b).equals(b)).toBeTruthy();
+			expect(b.intersection(new Rectangle(0,0,4,4))).toBeRectangle(1,2,3,2);
+			expect(b.intersection(new Rectangle(2,3,1,1))).toBeRectangle(2,3,1,1);
+		});
+		it("is always commutative", function() {
+			var rects = [a,b,c,d,e,f];
+			for (var i=0; i<rects.length; i++) {
+				for (var j=0; j<rects.length; j++) {
+					var d1 = rects[i].intersection(rects[j]);
+					var d2 = rects[j].intersection(rects[i]);
+					expect(d1 === null ? d1 === d2 : d1.equals(d2)).toBeTruthy();
+				}
+			}
+		});
+	});
 });
