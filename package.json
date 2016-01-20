@@ -6,7 +6,8 @@
   "scripts": {
     "test": "node node_modules/jasmine-node/lib/jasmine-node/cli.js test/",
     "docs": "docco -o docs/ index.js",
-    "publish-docs": "npm run docs && gh-pages -d docs/"
+    "publish-docs": "npm run docs && gh-pages -d docs/",
+    "prepublish": "npm run test"
   },
   "repository": {
     "type": "git",
