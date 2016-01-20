@@ -380,10 +380,14 @@ Rectangle.prototype.intersection = function(r) {
 	if (this.x < r.x) x =    r.x, dx = this.x + this.w - r.x;
 	else              x = this.x, dx = r.x    + r.w    - this.x;
 	if (dx < 0) return null;
+	if (dx > this.w) dx = this.w;
+	if (dx > r.w)    dx = r.w;
 
 	if (this.y < r.y) y =    r.y, dy = this.y + this.h - r.y;
 	else              y = this.y, dy = r.y    + r.h    - this.y;
 	if (dy < 0) return null;
+	if (dy > this.h) dy = this.h;
+	if (dy > r.h)    dy = r.h;
 
 	return new Rectangle(x, y, dx, dy);
 }

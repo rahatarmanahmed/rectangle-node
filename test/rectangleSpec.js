@@ -341,6 +341,7 @@ describe("Rectangle test suite:", function() {
 		it("computes the intersection", function() {
 			expect(b.intersection(b).equals(b)).toBeTruthy();
 			expect(b.intersection(new Rectangle(0,0,4,4))).toBeRectangle(1,2,3,2);
+			expect(b.intersection(new Rectangle(2,3,1,1))).toBeRectangle(2,3,1,1);
 		});
 		it("is always commutative", function() {
 			var rects = [a,b,c,d,e,f];
