@@ -372,4 +372,20 @@ Rectangle.prototype.overlaps = function(x, y, w ,h) {
 				this.y < y + h && this.y + this.h > y;
 };
 
+// ## intersection(Rectangle)
+// Returns a new Rectangle representing the overlapping area of the two rectangles
+// Returns null if the two rectangles do not overlap.
+Rectangle.prototype.intersection = function(r) {
+	var x, y, dx, dy;
+	if (this.x < r.x) x =    r.x, dx = this.x + this.w - r.x;
+	else              x = this.x, dx = r.x    + r.w    - this.x;
+	if (dx < 0) return null;
+
+	if (this.y < r.y) y =    r.y, dy = this.y + this.h - r.y;
+	else              y = this.y, dy = r.y    + r.h    - this.y;
+	if (dy < 0) return null;
+
+	return new Rectangle(x, y, dx, dy);
+}
+
 module.exports = Rectangle;
