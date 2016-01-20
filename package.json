@@ -4,7 +4,9 @@
   "description": "An object representing a rectangle.",
   "main": "index.js",
   "scripts": {
-    "test": "node node_modules/jasmine-node/lib/jasmine-node/cli.js test/"
+    "test": "node node_modules/jasmine-node/lib/jasmine-node/cli.js test/",
+    "docs": "docco -o docs/ index.js",
+    "publish-docs": "npm run docs && gh-pages -d docs/"
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,8 @@
   "author": "Rahat Ahmed <rahatarmanahmed@gmail.com>",
   "license": "EPL",
   "devDependencies": {
+    "docco": "^0.7.0",
+    "gh-pages": "^0.8.0",
     "jasmine-node": "~1.11.0"
   },
   "dependencies": {
