@@ -1,6 +1,6 @@
 {
   "name": "rectangle-node",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "An object representing a rectangle.",
   "main": "index.js",
   "scripts": {
