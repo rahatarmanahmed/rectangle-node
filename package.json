@@ -23,8 +23,8 @@
   "license": "EPL",
   "devDependencies": {
     "docco": "^0.7.0",
-    "gh-pages": "^0.8.0",
-    "jasmine-node": "~1.11.0"
+    "gh-pages": "^1.0.0",
+    "jasmine-node": "~1.14.5"
   },
   "dependencies": {
     "vector2-node": "0.x"
